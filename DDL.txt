@@ -1,0 +1,97 @@
+IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[dbo].HealthcareAppData'))
+DROP DATABASE HealthcareAppData;
+
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE NAME = 'HealthcareAppData')
+	CREATE DATABASE HealthcareAppData;
+
+GO
+USE HealthcareAppData;
+
+--Droping tables
+
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblSickLeaveRequirement')
+	DROP TABLE tblSickLeaveRequirement
+
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblPatient')
+	DROP TABLE tblPatient
+
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblDoctor')
+	DROP TABLE tblDoctor
+
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE NAME = 'tblHealthcareUserData')
+	DROP TABLE tblHealthcareUserData
+
+
+
+
+
+--Creating tables
+
+CREATE TABLE tblHealthcareUserData
+	(UserDataID int primary key identity(1,1),
+	GivenName nvarchar(50) not null,
+	Surname nvarchar(50) not null,
+	PersonalNo nvarchar(13) unique not null,
+	Username nvarchar(50)not null unique,
+	[Password] char(1000)not null);
+
+
+CREATE TABLE tblDoctor
+	(DoctorID int primary key identity(1,1),
+	UserDataID int foreign key(UserDataID) references tblHealthcareUserData(UserDataID) not null,	
+	BankAccountNo nvarchar(16)not null unique);
+
+
+CREATE TABLE tblPatient
+	(PatientID int primary key identity(1,1),
+	UserDataID int foreign key(UserDataID) references tblHealthcareUserData(UserDataID) not null,
+	DoctorID int foreign key(DoctorID) references tblDoctor(DoctorID) not null,
+	HealthInsuranceCardNo nvarchar(50));
+
+CREATE TABLE tblSickLeaveRequirement
+	(SickLeaveRequirementID int primary key identity(1,1),
+	PatientID int foreign key(PatientID) references tblPatient(PatientID) not null,	
+	UserDataID int foreign key(UserDataID) references tblHealthcareUserData(UserDataID) not null,	
+	RequirementDate datetime not null,
+	RequirementCause nvarchar(500),
+	CompanyName nvarchar(100),
+	IsEmergency bit not null,
+	IsApproved bit not null);
+
+
+IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[dbo].[vwSickLeaveRequirements]'))
+DROP VIEW [dbo].[vwSickLeaveRequirements]
+
+--creating view	
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[vwSickLeaveRequirements]
+AS
+SELECT   
+  TOP (100) PERCENT 
+					  dbo.tblPatient.UserDataID,
+					  dbo.tblHealthcareUserData.GivenName + ' ' + dbo.tblHealthcareUserData.Surname AS [Patient Name], 
+                      dbo.tblHealthcareUserData.PersonalNo,
+
+	   			      dbo.tblSickLeaveRequirement.RequirementDate,
+					  dbo.tblSickLeaveRequirement.RequirementCause,
+					  dbo.tblSickLeaveRequirement.CompanyName,
+                      dbo.tblSickLeaveRequirement.IsEmergency,
+                      dbo.tblSickLeaveRequirement.SickLeaveRequirementID,
+					  dbo.tblSickLeaveRequirement.PatientID,
+                      dbo.tblSickLeaveRequirement.IsApproved
+					
+FROM                  dbo.tblSickLeaveRequirement INNER JOIN
+                      dbo.tblPatient ON dbo.tblSickLeaveRequirement.PatientID = dbo.tblPatient.PatientID
+						INNER JOIN
+                      dbo.tblHealthcareUserData ON dbo.tblPatient.UserDataID = dbo.tblHealthcareUserData.UserDataID;
+  
+
+GO
