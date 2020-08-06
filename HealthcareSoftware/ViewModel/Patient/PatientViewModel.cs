@@ -1,7 +1,9 @@
 ﻿using HealthcareData.Models;
+using HealthcareData.Repositories;
 using HealthcareSoftware.Command;
 using HealthcareSoftware.View.Patient;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -12,8 +14,9 @@ namespace HealthcareSoftware.ViewModel.Patient
         #region Fields
         private readonly PatientView patientView;
         private tblPatient patient;
+        private HealtcareDBRepository db = new HealtcareDBRepository();
         #endregion
-  
+
 
         #region Constructors
         public PatientViewModel(PatientView patientView, tblPatient patient)
@@ -45,13 +48,6 @@ namespace HealthcareSoftware.ViewModel.Patient
             {
                 ChooseDoctorView chooseDoctorViewView = new ChooseDoctorView(patient);
                 chooseDoctorViewView.ShowDialog();
-
-                if ((chooseDoctorViewView.DataContext as ChooseDoctorViewViewModel).IsDoctorChosen == true)
-                {
-                    MessageBox.Show("Doctor is successfully chosen!");
-                }
-                else
-                    MessageBox.Show("Something went wrong.");
             }
             catch (Exception ex)
             {
@@ -87,13 +83,6 @@ namespace HealthcareSoftware.ViewModel.Patient
             {
                 AddNewRequirementView addNewRequirementView = new AddNewRequirementView(patient);
                 addNewRequirementView.ShowDialog();
-
-                if ((addNewRequirementView.DataContext as AddNewRequirementViewModel).IsAddedNewRequirement == true)
-                {
-                    MessageBox.Show("New Sick Leave Requirement is successfully created!");
-                }
-                else
-                    MessageBox.Show("Something went wrong.");
             }
             catch (Exception ex)
             {
@@ -102,7 +91,10 @@ namespace HealthcareSoftware.ViewModel.Patient
         }
         private bool CanAddAddNewRequirement()
         {
-            if (patient.DoctorID == 0)
+            var r = db.SickLeaveRequirements();
+            if (r.Any(x => x.PatientID == patient.PatientID && x.IsApproved == false))
+                return false;
+            if (patient.DoctorID == 0  )
                 return false;
             else
                 return true;

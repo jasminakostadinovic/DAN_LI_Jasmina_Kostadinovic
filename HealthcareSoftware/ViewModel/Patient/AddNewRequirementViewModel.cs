@@ -129,7 +129,7 @@ namespace HealthcareSoftware.ViewModel.Patient
                 var culture = CultureInfo.InvariantCulture;
                 var styles = DateTimeStyles.None;
 
-                if (name == "Date")
+                if (name == "RequirementDate")
                 {
                     if (!DateTime.TryParse(RequirementDate, culture, styles, out dateDateValue))
                     {
@@ -176,13 +176,14 @@ namespace HealthcareSoftware.ViewModel.Patient
             {
                 var db = new HealtcareDBRepository();
 
-                requirement.RequirementDate = DateTime.Parse(RequirementDate);
+                requirement.RequirementDate = dateDateValue;
                 requirement.IsApproved = false;
                 requirement.PatientID = patient.PatientID;
                 if (IsEmergencyStr == "y")
                     requirement.IsEmergency = true;
                 requirement.CompanyName = CompanyName;
                 requirement.RequirementCause = RequirementCause;
+                requirement.UserDataID = patient.UserDataID;
 
                 //adding new requrement record to database 
                 bool isAdded = db.TryAddNewSickLeaveRequirement(requirement);
