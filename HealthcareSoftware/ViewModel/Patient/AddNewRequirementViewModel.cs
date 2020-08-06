@@ -22,6 +22,7 @@ namespace HealthcareSoftware.ViewModel.Patient
         private string requirementCause;
         private string companyName;
         private string isEmergencyStr;
+        private string[] isEmergencyStrs = new string[]{ "n", "y" };
         private DateTime dateDateValue;
         private tblPatient patient;
         private tblSickLeaveRequirement requirement;
@@ -41,6 +42,19 @@ namespace HealthcareSoftware.ViewModel.Patient
                 if (isEmergencyStr == value) return;
                 isEmergencyStr = value;
                 OnPropertyChanged(nameof(IsEmergencyStr));
+            }
+        }
+        public string[] IsEmergencyStrs
+        {
+            get
+            {
+                return isEmergencyStrs;
+            }
+            set
+            {
+                if (isEmergencyStrs == value) return;
+                isEmergencyStrs = value;
+                OnPropertyChanged(nameof(IsEmergencyStrs));
             }
         }
         public string RequirementCause
@@ -90,6 +104,7 @@ namespace HealthcareSoftware.ViewModel.Patient
             this.patientView = patientView;
             this.patient = patient;
             requirement = new tblSickLeaveRequirement();
+            IsEmergencyStr = IsEmergencyStrs[0];
         }
         #endregion
 

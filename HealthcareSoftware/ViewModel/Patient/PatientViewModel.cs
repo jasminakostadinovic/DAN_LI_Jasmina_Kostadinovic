@@ -60,7 +60,7 @@ namespace HealthcareSoftware.ViewModel.Patient
         }
         private bool CanChooseDoctor()
         {
-            if (patient.DoctorID == 0)
+            if (patient.DoctorID == 0 || patient.DoctorID == null)
                 return true;
             return false;
         }

@@ -14,5 +14,9 @@ namespace HealthcareSoftware.View.Patient
             InitializeComponent();
             this.DataContext = new AddNewRequirementViewModel(this, patient);
         }
+        private void cmbSex_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
