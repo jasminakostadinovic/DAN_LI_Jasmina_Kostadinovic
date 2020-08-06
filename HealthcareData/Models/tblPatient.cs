@@ -22,7 +22,7 @@ namespace HealthcareData.Models
     
         public int PatientID { get; set; }
         public int UserDataID { get; set; }
-        public int DoctorID { get; set; }
+        public Nullable<int> DoctorID { get; set; }
         public string HealthInsuranceCardNo { get; set; }
     
         public virtual tblDoctor tblDoctor { get; set; }

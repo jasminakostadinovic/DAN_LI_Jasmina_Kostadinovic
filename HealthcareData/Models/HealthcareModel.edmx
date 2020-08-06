@@ -30,8 +30,8 @@
           </Key>
           <Property Name="PatientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserDataID" Type="int" Nullable="false" />
-          <Property Name="DoctorID" Type="int" Nullable="false" />
-          <Property Name="HealthInsuranceCardNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoctorID" Type="int" />
+          <Property Name="HealthInsuranceCardNo" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSickLeaveRequirement">
           <Key>
@@ -70,7 +70,7 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
           <Property Name="PatientID" Type="int" Nullable="false" />
           <Property Name="IsApproved" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblDoctor__UserD__1D7B6025">
+        <Association Name="FK__tblDoctor__UserD__7073AF84">
           <End Role="tblHealthcareUserData" Type="Self.tblHealthcareUserData" Multiplicity="1" />
           <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -82,8 +82,8 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPatien__Docto__214BF109">
-          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="1" />
+        <Association Name="FK__tblPatien__Docto__753864A1">
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="0..1" />
           <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblDoctor">
@@ -94,7 +94,7 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPatien__UserD__2057CCD0">
+        <Association Name="FK__tblPatien__UserD__74444068">
           <End Role="tblHealthcareUserData" Type="Self.tblHealthcareUserData" Multiplicity="1" />
           <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -106,7 +106,7 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblSickLe__Patie__24285DB4">
+        <Association Name="FK__tblSickLe__Patie__7814D14C">
           <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="1" />
           <End Role="tblSickLeaveRequirement" Type="Self.tblSickLeaveRequirement" Multiplicity="*" />
           <ReferentialConstraint>
@@ -118,7 +118,7 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblSickLe__UserD__251C81ED">
+        <Association Name="FK__tblSickLe__UserD__7908F585">
           <End Role="tblHealthcareUserData" Type="Self.tblHealthcareUserData" Multiplicity="1" />
           <End Role="tblSickLeaveRequirement" Type="Self.tblSickLeaveRequirement" Multiplicity="*" />
           <ReferentialConstraint>
@@ -149,23 +149,23 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
     [vwSickLeaveRequirements].[IsApproved] AS [IsApproved]
     FROM [dbo].[vwSickLeaveRequirements] AS [vwSickLeaveRequirements]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__tblDoctor__UserD__1D7B6025" Association="Self.FK__tblDoctor__UserD__1D7B6025">
+          <AssociationSet Name="FK__tblDoctor__UserD__7073AF84" Association="Self.FK__tblDoctor__UserD__7073AF84">
             <End Role="tblHealthcareUserData" EntitySet="tblHealthcareUserData" />
             <End Role="tblDoctor" EntitySet="tblDoctor" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPatien__Docto__214BF109" Association="Self.FK__tblPatien__Docto__214BF109">
+          <AssociationSet Name="FK__tblPatien__Docto__753864A1" Association="Self.FK__tblPatien__Docto__753864A1">
             <End Role="tblDoctor" EntitySet="tblDoctor" />
             <End Role="tblPatient" EntitySet="tblPatient" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPatien__UserD__2057CCD0" Association="Self.FK__tblPatien__UserD__2057CCD0">
+          <AssociationSet Name="FK__tblPatien__UserD__74444068" Association="Self.FK__tblPatien__UserD__74444068">
             <End Role="tblHealthcareUserData" EntitySet="tblHealthcareUserData" />
             <End Role="tblPatient" EntitySet="tblPatient" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblSickLe__Patie__24285DB4" Association="Self.FK__tblSickLe__Patie__24285DB4">
+          <AssociationSet Name="FK__tblSickLe__Patie__7814D14C" Association="Self.FK__tblSickLe__Patie__7814D14C">
             <End Role="tblPatient" EntitySet="tblPatient" />
             <End Role="tblSickLeaveRequirement" EntitySet="tblSickLeaveRequirement" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblSickLe__UserD__251C81ED" Association="Self.FK__tblSickLe__UserD__251C81ED">
+          <AssociationSet Name="FK__tblSickLe__UserD__7908F585" Association="Self.FK__tblSickLe__UserD__7908F585">
             <End Role="tblHealthcareUserData" EntitySet="tblHealthcareUserData" />
             <End Role="tblSickLeaveRequirement" EntitySet="tblSickLeaveRequirement" />
           </AssociationSet>
@@ -182,8 +182,8 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
           <Property Name="DoctorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserDataID" Type="Int32" Nullable="false" />
           <Property Name="BankAccountNo" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tblHealthcareUserData" Relationship="Self.FK__tblDoctor__UserD__1D7B6025" FromRole="tblDoctor" ToRole="tblHealthcareUserData" />
-          <NavigationProperty Name="tblPatients" Relationship="Self.FK__tblPatien__Docto__214BF109" FromRole="tblDoctor" ToRole="tblPatient" />
+          <NavigationProperty Name="tblHealthcareUserData" Relationship="Self.FK__tblDoctor__UserD__7073AF84" FromRole="tblDoctor" ToRole="tblHealthcareUserData" />
+          <NavigationProperty Name="tblPatients" Relationship="Self.FK__tblPatien__Docto__753864A1" FromRole="tblDoctor" ToRole="tblPatient" />
         </EntityType>
         <EntityType Name="tblHealthcareUserData">
           <Key>
@@ -195,9 +195,9 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
           <Property Name="PersonalNo" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="1000" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblDoctors" Relationship="Self.FK__tblDoctor__UserD__1D7B6025" FromRole="tblHealthcareUserData" ToRole="tblDoctor" />
-          <NavigationProperty Name="tblPatients" Relationship="Self.FK__tblPatien__UserD__2057CCD0" FromRole="tblHealthcareUserData" ToRole="tblPatient" />
-          <NavigationProperty Name="tblSickLeaveRequirements" Relationship="Self.FK__tblSickLe__UserD__251C81ED" FromRole="tblHealthcareUserData" ToRole="tblSickLeaveRequirement" />
+          <NavigationProperty Name="tblDoctors" Relationship="Self.FK__tblDoctor__UserD__7073AF84" FromRole="tblHealthcareUserData" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblPatients" Relationship="Self.FK__tblPatien__UserD__74444068" FromRole="tblHealthcareUserData" ToRole="tblPatient" />
+          <NavigationProperty Name="tblSickLeaveRequirements" Relationship="Self.FK__tblSickLe__UserD__7908F585" FromRole="tblHealthcareUserData" ToRole="tblSickLeaveRequirement" />
         </EntityType>
         <EntityType Name="tblPatient">
           <Key>
@@ -205,11 +205,11 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
           </Key>
           <Property Name="PatientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserDataID" Type="Int32" Nullable="false" />
-          <Property Name="DoctorID" Type="Int32" Nullable="false" />
-          <Property Name="HealthInsuranceCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblDoctor" Relationship="Self.FK__tblPatien__Docto__214BF109" FromRole="tblPatient" ToRole="tblDoctor" />
-          <NavigationProperty Name="tblHealthcareUserData" Relationship="Self.FK__tblPatien__UserD__2057CCD0" FromRole="tblPatient" ToRole="tblHealthcareUserData" />
-          <NavigationProperty Name="tblSickLeaveRequirements" Relationship="Self.FK__tblSickLe__Patie__24285DB4" FromRole="tblPatient" ToRole="tblSickLeaveRequirement" />
+          <Property Name="DoctorID" Type="Int32" />
+          <Property Name="HealthInsuranceCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblDoctor" Relationship="Self.FK__tblPatien__Docto__753864A1" FromRole="tblPatient" ToRole="tblDoctor" />
+          <NavigationProperty Name="tblHealthcareUserData" Relationship="Self.FK__tblPatien__UserD__74444068" FromRole="tblPatient" ToRole="tblHealthcareUserData" />
+          <NavigationProperty Name="tblSickLeaveRequirements" Relationship="Self.FK__tblSickLe__Patie__7814D14C" FromRole="tblPatient" ToRole="tblSickLeaveRequirement" />
         </EntityType>
         <EntityType Name="tblSickLeaveRequirement">
           <Key>
@@ -223,8 +223,8 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
           <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsEmergency" Type="Boolean" Nullable="false" />
           <Property Name="IsApproved" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblHealthcareUserData" Relationship="Self.FK__tblSickLe__UserD__251C81ED" FromRole="tblSickLeaveRequirement" ToRole="tblHealthcareUserData" />
-          <NavigationProperty Name="tblPatient" Relationship="Self.FK__tblSickLe__Patie__24285DB4" FromRole="tblSickLeaveRequirement" ToRole="tblPatient" />
+          <NavigationProperty Name="tblHealthcareUserData" Relationship="Self.FK__tblSickLe__UserD__7908F585" FromRole="tblSickLeaveRequirement" ToRole="tblHealthcareUserData" />
+          <NavigationProperty Name="tblPatient" Relationship="Self.FK__tblSickLe__Patie__7814D14C" FromRole="tblSickLeaveRequirement" ToRole="tblPatient" />
         </EntityType>
         <EntityType Name="vwSickLeaveRequirement">
           <Key>
@@ -248,7 +248,7 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
           <Property Name="PatientID" Type="Int32" Nullable="false" />
           <Property Name="IsApproved" Type="Boolean" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblDoctor__UserD__1D7B6025">
+        <Association Name="FK__tblDoctor__UserD__7073AF84">
           <End Role="tblHealthcareUserData" Type="Self.tblHealthcareUserData" Multiplicity="1" />
           <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -260,8 +260,8 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPatien__Docto__214BF109">
-          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="1" />
+        <Association Name="FK__tblPatien__Docto__753864A1">
+          <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="0..1" />
           <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblDoctor">
@@ -272,7 +272,7 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPatien__UserD__2057CCD0">
+        <Association Name="FK__tblPatien__UserD__74444068">
           <End Role="tblHealthcareUserData" Type="Self.tblHealthcareUserData" Multiplicity="1" />
           <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -284,7 +284,7 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblSickLe__UserD__251C81ED">
+        <Association Name="FK__tblSickLe__UserD__7908F585">
           <End Role="tblHealthcareUserData" Type="Self.tblHealthcareUserData" Multiplicity="1" />
           <End Role="tblSickLeaveRequirement" Type="Self.tblSickLeaveRequirement" Multiplicity="*" />
           <ReferentialConstraint>
@@ -296,7 +296,7 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblSickLe__Patie__24285DB4">
+        <Association Name="FK__tblSickLe__Patie__7814D14C">
           <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="1" />
           <End Role="tblSickLeaveRequirement" Type="Self.tblSickLeaveRequirement" Multiplicity="*" />
           <ReferentialConstraint>
@@ -308,29 +308,29 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HealthcareAppDataEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HealthcareAppDataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblDoctors" EntityType="Self.tblDoctor" />
           <EntitySet Name="tblHealthcareUserDatas" EntityType="Self.tblHealthcareUserData" />
           <EntitySet Name="tblPatients" EntityType="Self.tblPatient" />
           <EntitySet Name="tblSickLeaveRequirements" EntityType="Self.tblSickLeaveRequirement" />
           <EntitySet Name="vwSickLeaveRequirements" EntityType="Self.vwSickLeaveRequirement" />
-          <AssociationSet Name="FK__tblDoctor__UserD__1D7B6025" Association="Self.FK__tblDoctor__UserD__1D7B6025">
+          <AssociationSet Name="FK__tblDoctor__UserD__7073AF84" Association="Self.FK__tblDoctor__UserD__7073AF84">
             <End Role="tblHealthcareUserData" EntitySet="tblHealthcareUserDatas" />
             <End Role="tblDoctor" EntitySet="tblDoctors" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPatien__Docto__214BF109" Association="Self.FK__tblPatien__Docto__214BF109">
+          <AssociationSet Name="FK__tblPatien__Docto__753864A1" Association="Self.FK__tblPatien__Docto__753864A1">
             <End Role="tblDoctor" EntitySet="tblDoctors" />
             <End Role="tblPatient" EntitySet="tblPatients" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPatien__UserD__2057CCD0" Association="Self.FK__tblPatien__UserD__2057CCD0">
+          <AssociationSet Name="FK__tblPatien__UserD__74444068" Association="Self.FK__tblPatien__UserD__74444068">
             <End Role="tblHealthcareUserData" EntitySet="tblHealthcareUserDatas" />
             <End Role="tblPatient" EntitySet="tblPatients" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblSickLe__UserD__251C81ED" Association="Self.FK__tblSickLe__UserD__251C81ED">
+          <AssociationSet Name="FK__tblSickLe__UserD__7908F585" Association="Self.FK__tblSickLe__UserD__7908F585">
             <End Role="tblHealthcareUserData" EntitySet="tblHealthcareUserDatas" />
             <End Role="tblSickLeaveRequirement" EntitySet="tblSickLeaveRequirements" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblSickLe__Patie__24285DB4" Association="Self.FK__tblSickLe__Patie__24285DB4">
+          <AssociationSet Name="FK__tblSickLe__Patie__7814D14C" Association="Self.FK__tblSickLe__Patie__7814D14C">
             <End Role="tblPatient" EntitySet="tblPatients" />
             <End Role="tblSickLeaveRequirement" EntitySet="tblSickLeaveRequirements" />
           </AssociationSet>
@@ -340,7 +340,7 @@ warning 6002: The table/view 'HealthcareAppData.dbo.vwSickLeaveRequirements' doe
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HealthcareAppDataModelStoreContainer" CdmEntityContainer="HealthcareAppDataEntities1">
+        <EntityContainerMapping StorageEntityContainer="HealthcareAppDataModelStoreContainer" CdmEntityContainer="HealthcareAppDataEntities">
           <EntitySetMapping Name="tblDoctors">
             <EntityTypeMapping TypeName="HealthcareAppDataModel.tblDoctor">
               <MappingFragment StoreEntitySet="tblDoctor">

@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4fbf875653934666b5fa8b43d87ccfd9" Name="Diagram1">
+      <Diagram DiagramId="6ab16f1353844f7cb64451dc17783802" Name="Diagram1">
         <EntityTypeShape EntityType="HealthcareAppDataModel.tblDoctor" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthcareAppDataModel.tblHealthcareUserData" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthcareAppDataModel.tblPatient" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthcareAppDataModel.tblSickLeaveRequirement" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthcareAppDataModel.vwSickLeaveRequirement" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="HealthcareAppDataModel.FK__tblDoctor__UserD__1D7B6025" ManuallyRouted="false" />
-        <AssociationConnector Association="HealthcareAppDataModel.FK__tblPatien__Docto__214BF109" ManuallyRouted="false" />
-        <AssociationConnector Association="HealthcareAppDataModel.FK__tblPatien__UserD__2057CCD0" ManuallyRouted="false" />
-        <AssociationConnector Association="HealthcareAppDataModel.FK__tblSickLe__UserD__251C81ED" ManuallyRouted="false" />
-        <AssociationConnector Association="HealthcareAppDataModel.FK__tblSickLe__Patie__24285DB4" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthcareAppDataModel.FK__tblDoctor__UserD__7073AF84" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthcareAppDataModel.FK__tblPatien__Docto__753864A1" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthcareAppDataModel.FK__tblPatien__UserD__74444068" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthcareAppDataModel.FK__tblSickLe__UserD__7908F585" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthcareAppDataModel.FK__tblSickLe__Patie__7814D14C" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

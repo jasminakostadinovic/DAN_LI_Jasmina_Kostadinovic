@@ -13,6 +13,7 @@ namespace HealthcareData.Interfaces
         bool IsUniquePersonalNo(string personalNo);
         bool IsRequrementApproved(int requirementId);
         bool IsDoctorChosen(int patientId);
+        bool IsUniqueHealthInsuranceCardNo(string insuranceNo);
 
     }
 }

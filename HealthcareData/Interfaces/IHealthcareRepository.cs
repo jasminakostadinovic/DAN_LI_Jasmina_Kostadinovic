@@ -17,5 +17,6 @@ namespace HealthcareData.Interfaces
         bool TryDeleteSickLeaveRequirement(int requirementId);
         List<vwSickLeaveRequirement> SickLeaveRequirements();
         vwSickLeaveRequirement SickLeaveRequirement(int requirementId);
+        int GetUserDataId(string username);
     }
 }

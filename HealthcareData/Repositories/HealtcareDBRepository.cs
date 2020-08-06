@@ -10,11 +10,29 @@ namespace HealthcareData.Repositories
 {
     public class HealtcareDBRepository : IHealthcareRepository
     {
+        public int GetUserDataId(string username)
+        {
+            try
+            {
+                using (var conn = new HealthcareAppDataEntities())
+                {
+                    var user = conn.tblHealthcareUserDatas.FirstOrDefault(x => x.Username == username);
+                    if (user != null)
+                        return user.UserDataID;
+                    return 0;
+                }
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
         public tblDoctor LoadDoctor(int doctorId)
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     return conn.tblDoctors.FirstOrDefault(x => x.DoctorID == doctorId);
                 }
@@ -29,7 +47,7 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     var doctors = new List<tblDoctor>();
                     if (conn.tblDoctors.Any())
@@ -52,7 +70,7 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     return conn.tblPatients.FirstOrDefault(x => x.PatientID == patientId);
                 }
@@ -67,7 +85,7 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     return conn.vwSickLeaveRequirements.FirstOrDefault(x => x.SickLeaveRequirementID == requirementId);
                 }
@@ -82,7 +100,7 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     var requirements = new List<vwSickLeaveRequirement>();
                     if (conn.vwSickLeaveRequirements.Any())
@@ -105,7 +123,7 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     conn.tblDoctors.Add(doctor);
                     conn.SaveChanges();
@@ -122,14 +140,14 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     conn.tblPatients.Add(patient);
                     conn.SaveChanges();
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
@@ -139,7 +157,7 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     conn.tblSickLeaveRequirements.Add(requirement);
                     conn.SaveChanges();
@@ -156,14 +174,14 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     conn.tblHealthcareUserDatas.Add(userData);
                     conn.SaveChanges();
                     return true;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
@@ -175,7 +193,7 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     var requirementToRemove = conn.tblSickLeaveRequirements.FirstOrDefault(x => x.SickLeaveRequirementID == requirementId);
                     if(requirementToRemove != null)
@@ -200,7 +218,7 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     var patientToUpdate = conn.tblPatients.FirstOrDefault(x => x.PatientID == patientId);
                     if(patientToUpdate != null)
@@ -222,7 +240,7 @@ namespace HealthcareData.Repositories
         {
             try
             {
-                using (var conn = new HealthcareAppDataEntities1())
+                using (var conn = new HealthcareAppDataEntities())
                 {
                     var requrementToUpdate = conn.tblSickLeaveRequirements.FirstOrDefault(x => x.SickLeaveRequirementID == requirementId);
                     if (requrementToUpdate != null)

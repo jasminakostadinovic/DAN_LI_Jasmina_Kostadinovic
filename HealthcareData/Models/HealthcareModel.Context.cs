@@ -13,10 +13,10 @@ namespace HealthcareData.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HealthcareAppDataEntities1 : DbContext
+    public partial class HealthcareAppDataEntities : DbContext
     {
-        public HealthcareAppDataEntities1()
-            : base("name=HealthcareAppDataEntities1")
+        public HealthcareAppDataEntities()
+            : base("name=HealthcareAppDataEntities")
         {
         }
     
