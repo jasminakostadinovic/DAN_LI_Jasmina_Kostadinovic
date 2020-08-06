@@ -78,6 +78,21 @@ namespace HealthcareData.Validations
             }
         }
 
+        public bool IsUniqueBankAccountNo(string bankAccountNo)
+        {
+            try
+            {
+                using (var conn = new HealthcareAppDataEntities())
+                {
+                    return !conn.tblDoctors.Any(x => x.BankAccountNo == bankAccountNo);
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool IsUniquePersonalNo(string personalNo)
         {
             try

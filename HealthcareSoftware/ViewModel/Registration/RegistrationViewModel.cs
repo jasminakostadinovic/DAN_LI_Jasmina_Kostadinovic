@@ -25,10 +25,7 @@ namespace HealthcareSoftware.ViewModel.Registration
 
         #region Commands
 
-        //logging out
-
-
-        //adding new emloyee
+        //adding new patient
 
         private ICommand addNewPatient;
         public ICommand AddNewPatient
@@ -37,13 +34,13 @@ namespace HealthcareSoftware.ViewModel.Registration
             {
                 if (addNewPatient == null)
                 {
-                    addNewPatient = new RelayCommand(param => AddNewEmployeeExecute(), param => CanAddNewEmployee());
+                    addNewPatient = new RelayCommand(param => AddNewPatientExecute(), param => CanAddNewPatient());
                 }
                 return addNewPatient;
             }
         }
 
-        private void AddNewEmployeeExecute()
+        private void AddNewPatientExecute()
         {
             try
             {
@@ -62,10 +59,51 @@ namespace HealthcareSoftware.ViewModel.Registration
                 MessageBox.Show(ex.ToString());
             }
         }
-        private bool CanAddNewEmployee()
+        private bool CanAddNewPatient()
         {
             return true;
         }
+
+
+        //adding new patient
+
+        private ICommand addNewDoctor;
+        public ICommand AddNewDoctor
+        {
+            get
+            {
+                if (addNewDoctor == null)
+                {
+                    addNewDoctor = new RelayCommand(param => AddNewDoctorExecute(), param => CanAddNewDoctor());
+                }
+                return addNewDoctor;
+            }
+        }
+
+        private void AddNewDoctorExecute()
+        {
+            try
+            {
+                AddNewDoctorView addNewDoctorView = new AddNewDoctorView();
+                addNewDoctorView.ShowDialog();
+
+                if ((addNewDoctorView.DataContext as AddNewDoctorViewModel).IsAddedNewDoctor == true)
+                {
+                    MessageBox.Show("New doctor is successfully created!");
+                }
+                else
+                    MessageBox.Show("Something went wrong. New doctor is not created.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private bool CanAddNewDoctor()
+        {
+            return true;
+        }
+
 
         //closing the view
 
