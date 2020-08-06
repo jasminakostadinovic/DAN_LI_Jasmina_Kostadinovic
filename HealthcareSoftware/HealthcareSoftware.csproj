@@ -68,6 +68,7 @@
     <Compile Include="ViewModel\Doctor\DoctorViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\Patient\AddNewRequirementViewModel.cs" />
+    <Compile Include="ViewModel\Patient\ChooseDoctorViewViewModel.cs" />
     <Compile Include="ViewModel\Patient\PatientViewModel.cs" />
     <Compile Include="ViewModel\Registration\AddNewDoctorViewModel.cs" />
     <Compile Include="ViewModel\Registration\AddNewPatientViewModel.cs" />
@@ -78,6 +79,9 @@
     </Compile>
     <Compile Include="View\Patient\AddNewRequirementView.xaml.cs">
       <DependentUpon>AddNewRequirementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Patient\ChooseDoctorView.xaml.cs">
+      <DependentUpon>ChooseDoctorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Patient\PatientView.xaml.cs">
       <DependentUpon>PatientView.xaml</DependentUpon>
@@ -109,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Patient\AddNewRequirementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Patient\ChooseDoctorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

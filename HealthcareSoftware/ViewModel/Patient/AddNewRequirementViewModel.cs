@@ -22,13 +22,13 @@ namespace HealthcareSoftware.ViewModel.Patient
         private string requirementCause;
         private string companyName;
         private string isEmergencyStr;
-        private bool isApproved;
         private DateTime dateDateValue;
         private tblPatient patient;
         private tblSickLeaveRequirement requirement;
         #endregion
         #region Properties
         public bool CanSave { get; set; }
+        public bool IsAddedNewRequirement { get; set; }
 
         public string IsEmergencyStr
         {
