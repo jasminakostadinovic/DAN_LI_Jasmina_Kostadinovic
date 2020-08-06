@@ -59,7 +59,8 @@ CREATE TABLE tblSickLeaveRequirement
 	RequirementDate datetime not null,
 	RequirementCause nvarchar(500),
 	CompanyName nvarchar(100),
-	IsEmergency bit not null);
+	IsEmergency bit not null,
+	IsApproved bit not null);
 
 
 IF  EXISTS (SELECT * FROM sys.views WHERE object_id = OBJECT_ID(N'[dbo].[vwSickLeaveRequirements]'))
@@ -84,7 +85,8 @@ SELECT
 					  dbo.tblSickLeaveRequirement.CompanyName,
                       dbo.tblSickLeaveRequirement.IsEmergency,
                       dbo.tblSickLeaveRequirement.SickLeaveRequirementID,
-					  dbo.tblSickLeaveRequirement.PatientID
+					  dbo.tblSickLeaveRequirement.PatientID,
+                      dbo.tblSickLeaveRequirement.IsApproved
 					
 FROM                  dbo.tblSickLeaveRequirement INNER JOIN
                       dbo.tblPatient ON dbo.tblSickLeaveRequirement.PatientID = dbo.tblPatient.PatientID
