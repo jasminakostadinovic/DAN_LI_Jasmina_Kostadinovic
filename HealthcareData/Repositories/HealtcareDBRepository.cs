@@ -66,6 +66,35 @@ namespace HealthcareData.Repositories
             }
         }
 
+        public tblPatient LoadPatientByUserDataId(int userDataId)
+        {
+            try
+            {
+                using (var conn = new HealthcareAppDataEntities())
+                {
+                    return conn.tblPatients.FirstOrDefault(x => x.UserDataID == userDataId);
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public tblDoctor LoadDoctorByUserDataId(int userDataId)
+        {
+            try
+            {
+                using (var conn = new HealthcareAppDataEntities())
+                {
+                    return conn.tblDoctors.FirstOrDefault(x => x.UserDataID == userDataId);
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public tblPatient LoadPatient(int patientId)
         {
             try
@@ -147,7 +176,7 @@ namespace HealthcareData.Repositories
                     return true;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -181,7 +210,7 @@ namespace HealthcareData.Repositories
                     return true;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

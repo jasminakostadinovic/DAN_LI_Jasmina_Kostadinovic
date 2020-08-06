@@ -1,5 +1,9 @@
 ﻿using DataValidations;
+using HealthcareData.Repositories;
+using HealthcareData.Validations;
 using HealthcareSoftware.Command;
+using HealthcareSoftware.View.Doctor;
+using HealthcareSoftware.View.Patient;
 using HealthcareSoftware.View.Registration;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -53,13 +57,33 @@ namespace HealthcareSoftware.ViewModel
 		{
 			string password = (obj as PasswordBox).Password;
 			var validate = new Validations();
-			//if (UserName == Constants.usernamedMaster && SecurePasswordHasher.Verify(password, constants.passwordEmployeeHashed))
-			//{
-			//	MasterView masterView = new MasterView();
-			//	loginView.Close();
-			//	masterView.Show();
-			//	return;
-			//}
+			var validateHealthcareData = new HealthcareValidations();
+			var db = new HealtcareDBRepository();
+			if (validateHealthcareData.IsCorrectUser(userName, password))
+			{
+				int userDataId = db.GetUserDataId(userName);
+				if(userDataId != 0)
+				{
+					if (validateHealthcareData.GetUserType(userDataId) == "patient")
+					{
+						var patient = db.LoadPatientByUserDataId(userDataId);
+						PatientView patientView = new PatientView(patient);
+						loginView.Close();
+						patientView.Show();
+						return;
+					}
+					if (validateHealthcareData.GetUserType(userDataId) == "doctor")
+					{
+						var doctor = db.LoadDoctor(userDataId);
+						DoctorView doctorView = new DoctorView(doctor);
+						loginView.Close();
+						doctorView.Show();
+						return;
+					}
+				}
+			
+			
+			}
 		}	
 
 		//registrate

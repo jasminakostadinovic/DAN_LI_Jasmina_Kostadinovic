@@ -101,7 +101,12 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DataValidations\DataValidations.csproj">
+      <Project>{65264035-6A0B-413B-B402-AA6D753C7F4B}</Project>
+      <Name>DataValidations</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Models\HealthcareModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

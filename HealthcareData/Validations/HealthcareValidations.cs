@@ -1,4 +1,5 @@
-﻿using HealthcareData.Interfaces;
+﻿using DataValidations;
+using HealthcareData.Interfaces;
 using HealthcareData.Models;
 using System;
 using System.Linq;
@@ -13,9 +14,13 @@ namespace HealthcareData.Validations
             {
                 using (var conn = new HealthcareAppDataEntities())
                 {
-                    var user = conn.tblHealthcareUserDatas.FirstOrDefault(x => x.Username == userName && x.Password == password);
+                    var user = conn.tblHealthcareUserDatas.FirstOrDefault(x => x.Username == userName);
+                  
                     if (user != null)
-                        return true;
+                    {
+                        var passwordFromDb = conn.tblHealthcareUserDatas.First(x => x.Username == userName).Password;
+                        return SecurePasswordHasher.Verify(password, passwordFromDb);
+                    }
                     return false;
                 }
             }
@@ -42,6 +47,25 @@ namespace HealthcareData.Validations
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        public string GetUserType(int userDataId)
+        {
+            try
+            {
+                using (var conn = new HealthcareAppDataEntities())
+                {
+                    if (conn.tblPatients.Any(x => x.UserDataID == userDataId))
+                        return "patient";
+                    if (conn.tblDoctors.Any(x => x.UserDataID == userDataId))
+                        return "doctor";
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
 
@@ -102,7 +126,7 @@ namespace HealthcareData.Validations
                     return !conn.tblHealthcareUserDatas.Any(x => x.PersonalNo == personalNo);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

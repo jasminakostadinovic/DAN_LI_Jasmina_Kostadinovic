@@ -170,6 +170,11 @@ namespace HealthcareSoftware.ViewModel.Registration
 
                 else if (name == "BankAccountNo")
                 {
+                    if (!validate.IsDigitsOnly(BankAccountNo) || BankAccountNo.Length != 16)
+                    {
+                        validationMessage = "Invalid bank account number!";
+                        CanSave = false;
+                    }
                     if (!validateHealthcareData.IsUniqueBankAccountNo(BankAccountNo))
                     {
                         validationMessage = "Bank Account No must be unique!";
