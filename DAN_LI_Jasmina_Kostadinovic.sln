@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthcareSoftware", "Healt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataValidations", "DataValidations\DataValidations.csproj", "{65264035-6A0B-413B-B402-AA6D753C7F4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthcareData", "HealthcareData\HealthcareData.csproj", "{330CA2B6-C5D8-41A9-9A78-26DF89CFAED2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{65264035-6A0B-413B-B402-AA6D753C7F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65264035-6A0B-413B-B402-AA6D753C7F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65264035-6A0B-413B-B402-AA6D753C7F4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330CA2B6-C5D8-41A9-9A78-26DF89CFAED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330CA2B6-C5D8-41A9-9A78-26DF89CFAED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330CA2B6-C5D8-41A9-9A78-26DF89CFAED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330CA2B6-C5D8-41A9-9A78-26DF89CFAED2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
